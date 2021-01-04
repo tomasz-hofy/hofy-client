@@ -1,13 +1,18 @@
 import React, { FC } from 'react';
+
 import { Icon } from '../../../components/icons/Icon';
-import { Box } from '../../../components/theme/Box';
-import { useProducts } from '../../store/product/useProducts';
 import { SvgIcon } from '../../../components/icons/SvgIcon';
-import { Font } from '../../../components/theme/Font';
+import { Box } from '../../../components/theme/Box';
 import { Color } from '../../../components/theme/Color';
+import { Font } from '../../../components/theme/Font';
+import { useProducts } from '../../store/product/useProducts';
 
 export const Page1: FC = () => {
-    const { data, isLoading } = useProducts();
+    const { data, isLoading, isLoadingError } = useProducts();
+
+    if (isLoadingError) {
+        return <Box>Error</Box>;
+    }
 
     if (isLoading) {
         return <Box>Loading</Box>;
